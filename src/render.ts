@@ -1,4 +1,4 @@
-import { PDFDocument, PDFFont, StandardFonts, rgb } from "pdf-lib";
+import { PDFDocument, type PDFFont, StandardFonts, rgb } from "pdf-lib";
 import type { Resume, Work, Project } from "./schema.js";
 
 export interface RenderOptions {

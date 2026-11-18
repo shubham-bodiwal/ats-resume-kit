@@ -71,13 +71,13 @@ export interface MatchReport {
   suggestions: string[];
 }
 
-const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 function patterns(t: Term): { re: RegExp; spelling: string }[] {
   return [t.name, ...(t.aliases ?? [])].map((spelling) => ({
     spelling,
     // Custom boundaries so "C++", "Node.js" and "CI/CD" match but "Java" does not match "JavaScript".
-    re: new RegExp(`(?<![\\w+#.])${escape(spelling)}(?![\\w+#]|\\.\\w)`, t.caseSensitive ? "g" : "gi"),
+    re: new RegExp(`(?<![\\w+#.])${escapeRegExp(spelling)}(?![\\w+#]|\\.\\w)`, t.caseSensitive ? "g" : "gi"),
   }));
 }
 
