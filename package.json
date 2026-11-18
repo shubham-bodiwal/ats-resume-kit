@@ -11,7 +11,8 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "bin": {
     "ats-resume": "./dist/cli.js"
@@ -32,12 +33,14 @@
     "build:web": "vite build web",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "lint": "biome lint ."
   },
   "dependencies": {
     "pdf-lib": "^1.17.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.6.8",
     "@types/node": "^26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
@@ -56,5 +59,7 @@
     "type": "git",
     "url": "git+https://github.com/shubham-bodiwal/ats-resume-kit.git"
   },
-  "homepage": "https://github.com/shubham-bodiwal/ats-resume-kit#readme"
+  "homepage": "https://github.com/shubham-bodiwal/ats-resume-kit#readme",
+  "author": "Shubham Bhodiwal (https://github.com/shubham-bodiwal)",
+  "bugs": "https://github.com/shubham-bodiwal/ats-resume-kit/issues"
 }
