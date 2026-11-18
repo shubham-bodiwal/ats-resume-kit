@@ -1,21 +1,30 @@
 import { StrictMode, useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
-import * as pdfjs from "pdfjs-dist";
+import type { RenderTask } from "pdfjs-dist";
 import workerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
-import { matchResume, parseResume, renderResume, type RenderResult } from "../src/index";
+import { matchResume } from "../src/keywords";
+import { parseResume } from "../src/schema";
+import type { RenderResult } from "../src/render";
 import sampleResume from "../examples/resume.json";
 import sampleJob from "../examples/job.txt?raw";
 import "./styles.css";
 
-pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
+// pdf.js is only needed for the preview, so it loads in its own chunk.
+let pdfjsReady: Promise<typeof import("pdfjs-dist")> | undefined;
+const loadPdfjs = () =>
+  (pdfjsReady ??= import("pdfjs-dist").then((m) => {
+    m.GlobalWorkerOptions.workerSrc = workerUrl;
+    return m;
+  }));
 const SAMPLE = JSON.stringify(sampleResume, null, 2);
 
 function Preview({ pdf }: { pdf: Uint8Array }) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     let cancelled = false;
-    let task: pdfjs.RenderTask | undefined;
+    let task: RenderTask | undefined;
     (async () => {
+      const pdfjs = await loadPdfjs();
       const doc = await pdfjs.getDocument({ data: pdf.slice() }).promise;
       const page = await doc.getPage(1);
       const canvas = ref.current;
@@ -48,7 +57,11 @@ function App() {
   useEffect(() => {
     if (!parsed.resume) return;
     let live = true;
-    const t = setTimeout(() => renderResume(parsed.resume!, { pageSize: size }).then((r) => live && setResult(r)), 250);
+    const t = setTimeout(async () => {
+      const { renderResume } = await import("../src/render"); // pdf-lib loads in its own chunk
+      const r = await renderResume(parsed.resume!, { pageSize: size });
+      if (live) setResult(r);
+    }, 250);
     return () => { live = false; clearTimeout(t); };
   }, [parsed.resume, size]);
 
@@ -82,8 +95,8 @@ function App() {
               <option value="a4">A4</option>
             </select>
           </label>
-          <button className="ghost" onClick={() => { setJson(SAMPLE); setJd(sampleJob); }}>Load sample</button>
-          <button className="primary" onClick={download} disabled={!result || !!parsed.error}>Download PDF</button>
+          <button type="button" className="ghost" onClick={() => { setJson(SAMPLE); setJd(sampleJob); }}>Load sample</button>
+          <button type="button" className="primary" onClick={download} disabled={!result || !!parsed.error}>Download PDF</button>
         </div>
       </header>
 
