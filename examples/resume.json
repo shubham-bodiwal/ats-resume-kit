@@ -1,0 +1,57 @@
+{
+  "basics": {
+    "name": "Mira Okonkwo-Lind",
+    "label": "Frontend Engineer",
+    "email": "mira@example.com",
+    "phone": "+1 (555) 014-2290",
+    "url": "https://example.com",
+    "location": { "city": "Portland", "region": "OR", "countryCode": "US" },
+    "profiles": [{ "network": "GitHub", "username": "mira-example", "url": "https://github.com/mira-example" }],
+    "summary": "Frontend engineer with 6 years building React and TypeScript products. Cares about accessibility, fast pages and design systems that teams actually adopt."
+  },
+  "work": [
+    {
+      "name": "Fernhill Analytics",
+      "position": "Senior Frontend Engineer",
+      "location": "Remote",
+      "startDate": "2022-04",
+      "highlights": [
+        "Led the move from a CRA app to Next.js with server-side rendering, cutting largest contentful paint from 3.9s to 1.7s.",
+        "Built a token-based design system in React and Storybook used by 4 product teams.",
+        "Raised WCAG 2.2 AA compliance across the dashboard and added axe checks to CI.",
+        "Mentored 3 junior engineers and ran weekly code review sessions."
+      ]
+    },
+    {
+      "name": "Tidewater Health",
+      "position": "Frontend Engineer",
+      "location": "Portland, OR",
+      "startDate": "2019-06",
+      "endDate": "2022-03",
+      "highlights": [
+        "Shipped a patient scheduling flow in React and Redux handling 40k bookings a month.",
+        "Wrote Jest and Playwright tests that brought checkout bugs found in production down by half.",
+        "Worked with designers in Figma and backend engineers on REST and GraphQL APIs."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Trailhead Maps",
+      "url": "https://github.com/mira-example/trailhead",
+      "description": "Open-source offline-first trail map PWA.",
+      "keywords": ["TypeScript", "Vite", "IndexedDB", "Service Workers"]
+    }
+  ],
+  "education": [
+    { "institution": "Oregon State University", "studyType": "B.S.", "area": "Computer Science", "startDate": "2015", "endDate": "2019" }
+  ],
+  "skills": [
+    { "name": "Languages", "keywords": ["TypeScript", "JavaScript", "HTML", "CSS"] },
+    { "name": "Frameworks", "keywords": ["React", "Next.js", "Redux", "Tailwind CSS"] },
+    { "name": "Testing", "keywords": ["Jest", "Playwright", "Testing Library"] },
+    { "name": "Tools", "keywords": ["Git", "Vite", "Storybook", "Figma", "Docker"] }
+  ],
+  "certificates": [{ "name": "Web Accessibility Specialist", "issuer": "Example Accessibility Board", "date": "2023-09" }],
+  "languages": [{ "language": "English", "fluency": "Native" }, { "language": "Norwegian", "fluency": "Conversational" }]
+}

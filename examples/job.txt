@@ -1,0 +1,17 @@
+Senior Frontend Engineer (sample job description)
+
+About the role
+You will build the customer dashboard for a fictional logistics company.
+
+Requirements
+- 5+ years of experience with React and TypeScript
+- Strong grasp of accessibility (WCAG) and web performance
+- Experience with Next.js and server-side rendering
+- Testing with Jest or Vitest, and end-to-end tests with Playwright
+- Comfortable with GraphQL APIs and CI/CD pipelines
+- Clear written communication
+
+Nice to have
+- Experience with AWS or Kubernetes
+- Built or maintained a design system
+- Familiarity with D3 for data visualization
